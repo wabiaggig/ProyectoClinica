@@ -28,7 +28,6 @@ public class principal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	// Reusable references for the new GUI classes (prevent duplicate windows)
 	private gui.GUIPaciente guiPacienteFrame;
 	private gui.GUIPacienteCME guiPacienteCMEFrame;
 	private gui.GUIMedico guiMedicoFrame;
@@ -60,7 +59,6 @@ public class principal extends JFrame {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 600, 400);
 
-		// Set a consistent font for all menu components
 		Font menuFont = new Font("Segoe UI", Font.PLAIN, 15);
 		UIManager.put("Menu.font", menuFont);
 		UIManager.put("MenuItem.font", menuFont);
@@ -68,9 +66,7 @@ public class principal extends JFrame {
 		UIManager.put("PopupMenu.font", menuFont);
 		UIManager.put("CheckBoxMenuItem.font", menuFont);
 		UIManager.put("RadioButtonMenuItem.font", menuFont);
-		// Pantalla completa
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		// Set window icon (try disk then classpath)
 		try {
 			Image iconImg = ImageIO.read(new File("doctor-icon-physician-symbol-vector.jpg"));
 			if (iconImg == null)
@@ -87,7 +83,6 @@ public class principal extends JFrame {
 			}
 		}
 
-		// Use fondo.png as the main application background (tries disk then classpath)
 		contentPane = new PanelFondo("fondo.png");
 
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -104,7 +99,6 @@ public class principal extends JFrame {
 		mnMantenimiento.setFont(menuFont);
 		menuBar.add(mnMantenimiento);
 
-		// Paciente submenu (Adicionar + Consultar/Modificar/Eliminar)
 		JMenu MPaciente = new JMenu("Paciente");
 		MPaciente.setIcon(cargarIcono("paciente.png", 16, 16));
 		MPaciente.setFont(menuFont);
@@ -168,7 +162,6 @@ public class principal extends JFrame {
 		});
 		MPaciente.add(SMPaciente_cme);
 
-		// Medico submenu
 		JMenu MMedico = new JMenu("Medico");
 		MMedico.setIcon(cargarIcono("medico.png", 16, 16));
 		MMedico.setFont(menuFont);
@@ -232,7 +225,6 @@ public class principal extends JFrame {
 		});
 		MMedico.add(SMMedico_cme);
 
-		// Consultorio submenu
 		JMenu MConsultorio = new JMenu("Consultorio");
 		MConsultorio.setIcon(cargarIcono("consultorio.png", 16, 16));
 		MConsultorio.setFont(menuFont);
@@ -316,7 +308,6 @@ public class principal extends JFrame {
 		mnConsulta.setFont(menuFont);
 		menuBar.add(mnConsulta);
 		
-		//AÑADIR BOTONES DE CONSULTA
 		JMenuItem mntmConsultarMedico = new JMenuItem("Consultar Medico");
 		mntmConsultarMedico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -396,12 +387,6 @@ public class principal extends JFrame {
 		mnExtra.add(mntmAcerca);
 		menuBar.add(mnExtra);
 
-		// Find the 'Salir' menu item previously created and override its action:
-		// We can't reference it by variable here, so add a WindowListener and
-		// add an explicit menu item 'Salir' hooking to confirmation. We'll attach
-		// the confirmation to the frame close as well.
-
-		// Add window close confirmation
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -413,11 +398,6 @@ public class principal extends JFrame {
 			}
 		});
 
-		// Also replace the action of the existing 'Salir' menu item if found.
-		// We'll create a new menu item and add it to the last menu group for extra safety.
-		// Locate the menu bar and last menu (mnExtra) added earlier by creating a new one
-		// and re-attaching it would be intrusive, so instead add an explicit "Salir"
-		// item to the menu bar programmatically at the end.
 		JMenuItem mntmSalirConfirm = new JMenuItem("Salir");
 		mntmSalirConfirm.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mntmSalirConfirm.addActionListener(new ActionListener() {
@@ -429,12 +409,9 @@ public class principal extends JFrame {
 				}
 			}
 		});
-		// Attach to menu bar as last element
-		// Prefer adding 'Salir' into the existing 'Extra' menu when available.
 		try {
 			mnExtra.add(mntmSalirConfirm);
 		} catch (Exception ex) {
-			// Fallback: attach directly to menubar if mnExtra is not accessible
 			if (getJMenuBar() != null) {
 				getJMenuBar().add(mntmSalirConfirm);
 			}
@@ -463,7 +440,6 @@ public class principal extends JFrame {
 				}
 			}
 		} catch (IOException e) {
-			// ignore
 		}
 		return null;
 	}
@@ -473,11 +449,9 @@ public class principal extends JFrame {
 		private Image imagen;
 
 		public PanelFondo(String ruta) {
-			// Try loading from file system first (useful during development)
 			try {
 				imagen = ImageIO.read(new File(ruta));
 			} catch (IOException e) {
-				// If not found on disk, try loading from classpath (inside jar)
 				try (InputStream is = getClass().getResourceAsStream("/" + ruta)) {
 					if (is != null) {
 						imagen = ImageIO.read(is);
@@ -489,7 +463,6 @@ public class principal extends JFrame {
 				}
 			}
 
-			// Ensure the panel is opaque so the background image is visible
 			setOpaque(true);
 		}
 
@@ -499,7 +472,6 @@ public class principal extends JFrame {
 			if (imagen != null) {
 				g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
 			}
-			// keep default opacity
 		}
 	}
 }

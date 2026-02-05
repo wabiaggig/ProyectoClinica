@@ -92,7 +92,6 @@ public class GUIBuscarMedico extends JFrame {
 		JButton btnBuscarDni = new JButton("Buscar");
 		btnBuscarDni.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//aqui ira el codigo que buscara al paciente y cargue al jtable
 			}
 		});
 		btnBuscarDni.setForeground(new Color(0, 0, 0));
