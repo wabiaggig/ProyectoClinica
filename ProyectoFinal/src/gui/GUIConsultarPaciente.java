@@ -69,8 +69,8 @@ public class GUIConsultarPaciente extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("Buscar Paciente");
 		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		lblNewLabel_1.setBounds(134, 43, 203, 39);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 28));
+		lblNewLabel_1.setBounds(134, 43, 248, 39);
 		panelSuperior.add(lblNewLabel_1);
 		
 		JSeparator separator = new JSeparator();

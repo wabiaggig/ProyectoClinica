@@ -24,7 +24,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
-public class principal extends JFrame {
+public class Principal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -42,7 +42,7 @@ public class principal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					principal frame = new principal();
+					Principal frame = new Principal();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +54,7 @@ public class principal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public principal() {
+	public Principal() {
 		setTitle("SISTEMA DE RESERVA DE CITAS MÉDICAS");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 600, 400);
@@ -114,7 +114,7 @@ public class principal extends JFrame {
 						guiPacienteFrame = new gui.GUIPaciente();
 						ImageIcon icon = cargarIcono("paciente.png", 32, 32);
 						if (icon != null) guiPacienteFrame.setIconImage(icon.getImage());
-						guiPacienteFrame.setLocationRelativeTo(principal.this);
+						guiPacienteFrame.setLocationRelativeTo(Principal.this);
 						guiPacienteFrame.addWindowListener(new WindowAdapter() {
 							@Override
 							public void windowClosed(WindowEvent e) {
@@ -127,7 +127,7 @@ public class principal extends JFrame {
 						guiPacienteFrame.requestFocus();
 					}
 				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(principal.this, "No se pudo abrir Paciente (Adicionar): " + ex.getMessage(), "Error",
+					JOptionPane.showMessageDialog(Principal.this, "No se pudo abrir Paciente (Adicionar): " + ex.getMessage(), "Error",
 						JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -142,7 +142,7 @@ public class principal extends JFrame {
 				try {
 					if (guiPacienteCMEFrame == null || !guiPacienteCMEFrame.isDisplayable()) {
 						guiPacienteCMEFrame = new gui.GUIPacienteCME();
-						guiPacienteCMEFrame.setLocationRelativeTo(principal.this);
+						guiPacienteCMEFrame.setLocationRelativeTo(Principal.this);
 						guiPacienteCMEFrame.addWindowListener(new WindowAdapter() {
 							@Override
 							public void windowClosed(WindowEvent e) {
@@ -155,7 +155,7 @@ public class principal extends JFrame {
 						guiPacienteCMEFrame.requestFocus();
 					}
 				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(principal.this, "No se pudo abrir Paciente (CME): " + ex.getMessage(), "Error",
+					JOptionPane.showMessageDialog(Principal.this, "No se pudo abrir Paciente (CME): " + ex.getMessage(), "Error",
 						JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -177,7 +177,7 @@ public class principal extends JFrame {
 						guiMedicoFrame = new gui.GUIMedico();
 						ImageIcon icon = cargarIcono("medico.png", 32, 32);
 						if (icon != null) guiMedicoFrame.setIconImage(icon.getImage());
-						guiMedicoFrame.setLocationRelativeTo(principal.this);
+						guiMedicoFrame.setLocationRelativeTo(Principal.this);
 						guiMedicoFrame.addWindowListener(new WindowAdapter() {
 							@Override
 							public void windowClosed(WindowEvent e) {
@@ -190,7 +190,7 @@ public class principal extends JFrame {
 						guiMedicoFrame.requestFocus();
 					}
 				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(principal.this, "No se pudo abrir Medico (Adicionar): " + ex.getMessage(), "Error",
+					JOptionPane.showMessageDialog(Principal.this, "No se pudo abrir Medico (Adicionar): " + ex.getMessage(), "Error",
 						JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -205,7 +205,7 @@ public class principal extends JFrame {
 				try {
 					if (guiMedicoCMEFrame == null || !guiMedicoCMEFrame.isDisplayable()) {
 						guiMedicoCMEFrame = new gui.GUIMedicoCME();
-						guiMedicoCMEFrame.setLocationRelativeTo(principal.this);
+						guiMedicoCMEFrame.setLocationRelativeTo(Principal.this);
 						guiMedicoCMEFrame.addWindowListener(new WindowAdapter() {
 							@Override
 							public void windowClosed(WindowEvent e) {
@@ -218,7 +218,7 @@ public class principal extends JFrame {
 						guiMedicoCMEFrame.requestFocus();
 					}
 				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(principal.this, "No se pudo abrir Medico (CME): " + ex.getMessage(), "Error",
+					JOptionPane.showMessageDialog(Principal.this, "No se pudo abrir Medico (CME): " + ex.getMessage(), "Error",
 						JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -240,7 +240,7 @@ public class principal extends JFrame {
 						guiConsultorioFrame = new gui.GUIConsultorio();
 						ImageIcon icon = cargarIcono("consultorio.png", 32, 32);
 						if (icon != null) guiConsultorioFrame.setIconImage(icon.getImage());
-						guiConsultorioFrame.setLocationRelativeTo(principal.this);
+						guiConsultorioFrame.setLocationRelativeTo(Principal.this);
 						guiConsultorioFrame.addWindowListener(new WindowAdapter() {
 							@Override
 							public void windowClosed(WindowEvent e) {
@@ -253,7 +253,7 @@ public class principal extends JFrame {
 						guiConsultorioFrame.requestFocus();
 					}
 				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(principal.this, "No se pudo abrir Consultorio (Adicionar): " + ex.getMessage(), "Error",
+					JOptionPane.showMessageDialog(Principal.this, "No se pudo abrir Consultorio (Adicionar): " + ex.getMessage(), "Error",
 						JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -268,7 +268,7 @@ public class principal extends JFrame {
 				try {
 					if (guiConsultorioCMEFrame == null || !guiConsultorioCMEFrame.isDisplayable()) {
 						guiConsultorioCMEFrame = new gui.GUIConsultorioCME();
-						guiConsultorioCMEFrame.setLocationRelativeTo(principal.this);
+						guiConsultorioCMEFrame.setLocationRelativeTo(Principal.this);
 						guiConsultorioCMEFrame.addWindowListener(new WindowAdapter() {
 							@Override
 							public void windowClosed(WindowEvent e) {
@@ -281,7 +281,7 @@ public class principal extends JFrame {
 						guiConsultorioCMEFrame.requestFocus();
 					}
 				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(principal.this, "No se pudo abrir Consultorio (CME): " + ex.getMessage(), "Error",
+					JOptionPane.showMessageDialog(Principal.this, "No se pudo abrir Consultorio (CME): " + ex.getMessage(), "Error",
 						JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -369,7 +369,7 @@ public class principal extends JFrame {
 		mntmAcerca.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				JOptionPane.showMessageDialog(principal.this,
+				JOptionPane.showMessageDialog(Principal.this,
 						"SISTEMA DE RESERVA DE CITAS MÉDICAS"
 						+ "\n-----------------------------------------------------------"
 						+ "\nDesarrollado por:"
@@ -390,7 +390,7 @@ public class principal extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				int option = JOptionPane.showConfirmDialog(principal.this,
+				int option = JOptionPane.showConfirmDialog(Principal.this,
 					"¿Está seguro que desea salir?", "Confirmar salida", JOptionPane.YES_NO_OPTION);
 				if (option == JOptionPane.YES_OPTION) {
 					System.exit(0);
@@ -402,7 +402,7 @@ public class principal extends JFrame {
 		mntmSalirConfirm.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mntmSalirConfirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int option = JOptionPane.showConfirmDialog(principal.this,
+				int option = JOptionPane.showConfirmDialog(Principal.this,
 					"¿Está seguro que desea salir?", "Confirmar salida", JOptionPane.YES_NO_OPTION);
 				if (option == JOptionPane.YES_OPTION) {
 					System.exit(0);

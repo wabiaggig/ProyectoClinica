@@ -3,66 +3,172 @@ package gui;
 import java.awt.EventQueue;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
+import java.awt.Font;
 
-public class GUIRegistroCitas extends JFrame { // O JInternalFrame si usas DesktopPane
+public class GUIRegistroCitas extends JFrame {
 
     private JPanel contentPane;
+    
+    private JPanel panelSuperior;
+    private JPanel panelInferior;
+
     private JTextField txtNumeroCita;
     private JTextField txtPacienteCod;
     private JTextField txtMedicoCod;
     private JTextField txtConsultorioCod;
     private JTextField txtFecha;
     private JTextField txtHora;
+    private JComboBox<String> cmbEstado;
+    
+    private JButton btnAdicionar;
+    private JButton btnModificar;
+    private JButton btnCancelar;
+    private JButton btnGrabar;
+
     private JTable tableCitas;
     private DefaultTableModel model;
-    private JComboBox<String> cmbEstado;
-
     
     private final int ESTADO_PENDIENTE = 0;
-    private final int ESTADO_ATENDIDO = 1;
-    private final int ESTADO_HISTORIAL = 2; 
     
-	/**
-	 * Create the frame.
-	 */
+    /**
+     * Create the frame.
+     */
     public GUIRegistroCitas() {
         setTitle("Gestión de Citas");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 650, 500);
+        setBounds(100, 100, 800, 600); 
         contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        setupCampos();
+        panelSuperior = new JPanel();
+        panelSuperior.setBounds(0, 0, 786, 220); 
+        panelSuperior.setBackground(new Color(51, 153, 255));
+        contentPane.add(panelSuperior);
+        panelSuperior.setLayout(null);
         
-        JButton btnAdicionar = new JButton("Programar");
-        btnAdicionar.setBounds(450, 20, 150, 23);
-        contentPane.add(btnAdicionar);
+        JLabel lblTitulo = new JLabel("GESTIÓN DE CITAS Y PROGRAMACIÓN");
+        lblTitulo.setBounds(0, 11, 786, 30);
+        lblTitulo.setForeground(Color.WHITE);
+        lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 24));
+        lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        panelSuperior.add(lblTitulo);
 
-        JButton btnModificar = new JButton("Reprogramar");
-        btnModificar.setBounds(450, 50, 150, 23);
-        contentPane.add(btnModificar);
-
-        JButton btnCancelar = new JButton("Cancelar Cita");
-        btnCancelar.setBounds(450, 80, 150, 23);
-        contentPane.add(btnCancelar);
+        JLabel lblNro = new JLabel("Nro Cita:"); 
+        lblNro.setBounds(39, 71, 60, 14);
+        lblNro.setForeground(Color.WHITE); // Texto blanco
+        lblNro.setFont(new Font("Tahoma", Font.BOLD, 11));
+        panelSuperior.add(lblNro);
         
-        JButton btnGrabar = new JButton("Aplicar");
-        btnGrabar.setBounds(450, 110, 150, 23);
-        contentPane.add(btnGrabar);
+        txtNumeroCita = new JTextField(); 
+        txtNumeroCita.setBounds(99, 68, 100, 22);
+        txtNumeroCita.setEditable(false);
+        panelSuperior.add(txtNumeroCita);
+        
+        JLabel lblEst = new JLabel("Estado:"); 
+        lblEst.setBounds(229, 71, 50, 14);
+        lblEst.setForeground(Color.WHITE);
+        lblEst.setFont(new Font("Tahoma", Font.BOLD, 11));
+        panelSuperior.add(lblEst);
+        
+        cmbEstado = new JComboBox<>(new String[]{"Pendiente", "Atendido", "Historial"});
+        cmbEstado.setBounds(279, 68, 120, 22);
+        cmbEstado.setEnabled(false); 
+        panelSuperior.add(cmbEstado);
 
-        // --- TABLA ---
+        JLabel lblPac = new JLabel("Paciente:"); 
+        lblPac.setBounds(39, 106, 60, 14);
+        lblPac.setForeground(Color.WHITE);
+        lblPac.setFont(new Font("Tahoma", Font.BOLD, 11));
+        panelSuperior.add(lblPac);
+        
+        txtPacienteCod = new JTextField();
+        txtPacienteCod.setBounds(99, 103, 300, 22);
+        panelSuperior.add(txtPacienteCod);
+        
+        JLabel lblMed = new JLabel("Médico:"); 
+        lblMed.setBounds(39, 139, 50, 14);
+        lblMed.setForeground(Color.WHITE);
+        lblMed.setFont(new Font("Tahoma", Font.BOLD, 11));
+        panelSuperior.add(lblMed);
+        
+        txtMedicoCod = new JTextField();
+        txtMedicoCod.setBounds(99, 136, 300, 22);
+        panelSuperior.add(txtMedicoCod);
+
+        JLabel lblCons = new JLabel("Consul.:"); 
+        lblCons.setBounds(39, 169, 70, 14);
+        lblCons.setForeground(Color.WHITE);
+        lblCons.setFont(new Font("Tahoma", Font.BOLD, 11));
+        panelSuperior.add(lblCons);
+        
+        txtConsultorioCod = new JTextField();
+        txtConsultorioCod.setBounds(99, 166, 100, 22);
+        panelSuperior.add(txtConsultorioCod);
+        
+        JLabel lblFec = new JLabel("Fecha:"); 
+        lblFec.setBounds(229, 169, 50, 14);
+        lblFec.setForeground(Color.WHITE);
+        lblFec.setFont(new Font("Tahoma", Font.BOLD, 11));
+        panelSuperior.add(lblFec);
+        
+        txtFecha = new JTextField();
+        txtFecha.setBounds(279, 166, 120, 22);
+        panelSuperior.add(txtFecha);
+        
+        JLabel lblHora = new JLabel("Hora:"); 
+        lblHora.setBounds(409, 169, 40, 14);
+        lblHora.setForeground(Color.WHITE);
+        lblHora.setFont(new Font("Tahoma", Font.BOLD, 11));
+        panelSuperior.add(lblHora);
+        
+        txtHora = new JTextField();
+        txtHora.setBounds(454, 165, 100, 22);
+        panelSuperior.add(txtHora);
+
+        btnAdicionar = new JButton("Programar");
+        btnAdicionar.setBounds(602, 61, 120, 25);
+        btnAdicionar.setBackground(Color.WHITE);
+        panelSuperior.add(btnAdicionar);
+
+        btnModificar = new JButton("Reprogramar");
+        btnModificar.setBounds(602, 96, 120, 25);
+        btnModificar.setBackground(Color.WHITE);
+        panelSuperior.add(btnModificar);
+
+        btnCancelar = new JButton("Cancelar");
+        btnCancelar.setBounds(602, 131, 120, 25);
+        btnCancelar.setBackground(Color.WHITE);
+        panelSuperior.add(btnCancelar);
+        
+        btnGrabar = new JButton("Aplicar");
+        btnGrabar.setBounds(602, 167, 120, 25);
+        btnGrabar.setBackground(Color.WHITE);
+        panelSuperior.add(btnGrabar);
+
+
+        panelInferior = new JPanel();
+        panelInferior.setBounds(0, 220, 786, 343); 
+        panelInferior.setBackground(Color.WHITE);
+        panelInferior.setLayout(null);
+        contentPane.add(panelInferior);
+
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(20, 160, 580, 280);
-        contentPane.add(scrollPane);
+        scrollPane.setBounds(10, 10, 760, 320);
+        scrollPane.setBorder(new LineBorder(new Color(51, 153, 255), 1));
+        scrollPane.getViewport().setBackground(Color.WHITE);
+        panelInferior.add(scrollPane);
 
         tableCitas = new JTable();
+        tableCitas.setFillsViewportHeight(true); 
         model = new DefaultTableModel(
             new Object[][] {},
             new String[] {"Nro", "Paciente", "Médico", "Consul.", "Fecha", "Hora", "Estado"}
@@ -70,10 +176,8 @@ public class GUIRegistroCitas extends JFrame { // O JInternalFrame si usas Deskt
         tableCitas.setModel(model);
         scrollPane.setViewportView(tableCitas);
 
-       
         btnAdicionar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
                 generarCorrelativo();
                 
                 String medico = txtMedicoCod.getText();
@@ -86,7 +190,7 @@ public class GUIRegistroCitas extends JFrame { // O JInternalFrame si usas Deskt
                     limpiarCampos();
                     JOptionPane.showMessageDialog(null, "Cita Registrada con éxito.");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error: Médico o Consultorio ocupado en ese horario.", "Cruce de Horarios", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Error: Médico o Consultorio ocupado.", "Cruce", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -113,27 +217,19 @@ public class GUIRegistroCitas extends JFrame { // O JInternalFrame si usas Deskt
                     JOptionPane.showMessageDialog(null, "Seleccione una cita para cancelar.");
                     return;
                 }
-                
                 model.setValueAt("Cancelado (Historial)", fila, 6); 
-                JOptionPane.showMessageDialog(null, "Cita cancelada y movida a historial.");
-            }
-        });
-        
-        btnModificar.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Cita cancelada.");
             }
         });
     }
 
-
     private void generarCorrelativo() {
-        
-        txtNumeroCita.setText("C0001"); // Dummy
+        txtNumeroCita.setText("C0001"); 
     }
 
     private boolean validarDisponibilidad(String codMedico, String fecha, String hora, String codConsultorio) {
          if (hora.equals("10:00") && codMedico.equals("M001")) {
-            return false; // Ejemplo de choque
+            return false; 
         }
         return true;
     }
@@ -161,29 +257,5 @@ public class GUIRegistroCitas extends JFrame { // O JInternalFrame si usas Deskt
         txtFecha.setText("");
         txtHora.setText("");
         txtPacienteCod.requestFocus();
-    }
-    
-    private void setupCampos() {
-        JLabel lblNro = new JLabel("Nro Cita:"); lblNro.setBounds(20, 20, 60, 14); contentPane.add(lblNro);
-        txtNumeroCita = new JTextField(); txtNumeroCita.setEditable(false); txtNumeroCita.setBounds(80, 17, 80, 20); contentPane.add(txtNumeroCita);
-        
-        JLabel lblPac = new JLabel("Paciente:"); lblPac.setBounds(20, 50, 60, 14); contentPane.add(lblPac);
-        txtPacienteCod = new JTextField(); txtPacienteCod.setBounds(80, 47, 120, 20); contentPane.add(txtPacienteCod);
-        
-        JLabel lblMed = new JLabel("Médico:"); lblMed.setBounds(220, 50, 50, 14); contentPane.add(lblMed);
-        txtMedicoCod = new JTextField(); txtMedicoCod.setBounds(270, 47, 120, 20); contentPane.add(txtMedicoCod);
-        
-        JLabel lblCons = new JLabel("Consultorio:"); lblCons.setBounds(20, 80, 70, 14); contentPane.add(lblCons);
-        txtConsultorioCod = new JTextField(); txtConsultorioCod.setBounds(90, 77, 110, 20); contentPane.add(txtConsultorioCod);
-        
-        JLabel lblFec = new JLabel("Fecha:"); lblFec.setBounds(20, 110, 50, 14); contentPane.add(lblFec);
-        txtFecha = new JTextField(); txtFecha.setBounds(80, 107, 90, 20); contentPane.add(txtFecha);
-        
-        JLabel lblHora = new JLabel("Hora:"); lblHora.setBounds(190, 110, 50, 14); contentPane.add(lblHora);
-        txtHora = new JTextField(); txtHora.setBounds(230, 107, 60, 20); contentPane.add(txtHora);
-        
-        JLabel lblEst = new JLabel("Estado:"); lblEst.setBounds(220, 20, 50, 14); contentPane.add(lblEst);
-        cmbEstado = new JComboBox<>(new String[]{"Pendiente", "Atendido", "Historial"});
-        cmbEstado.setBounds(270, 17, 100, 22); cmbEstado.setEnabled(false); contentPane.add(cmbEstado);
     }
 }

@@ -88,9 +88,9 @@ public class GUIConsultarConsultorio extends JFrame {
 		btnNewButton.setBounds(28, 25, 118, 23);
 		panelSuperior.add(btnNewButton);
 		
-		JLabel lblNewLabel = new JLabel("Citas ");
+		JLabel lblNewLabel = new JLabel("CITAS");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(281, 16, 159, 34);
+		lblNewLabel.setBounds(282, 16, 74, 34);
 		panelSuperior.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
 		

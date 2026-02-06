@@ -74,14 +74,14 @@ public class GUIConsultarPorFecha extends JFrame {
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Agenda De:");
 		lblNewLabel_1_1.setForeground(Color.WHITE);
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1_1.setBounds(107, 44, 117, 39);
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblNewLabel_1_1.setBounds(107, 44, 144, 39);
 		panelSuperior.add(lblNewLabel_1_1);
 		
 		JLabel lblMedico = new JLabel("Dr. JeanPierre Nureña");
 		lblMedico.setForeground(Color.WHITE);
-		lblMedico.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblMedico.setBounds(224, 44, 233, 39);
+		lblMedico.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblMedico.setBounds(253, 46, 233, 39);
 		panelSuperior.add(lblMedico);
 		
 		JLabel lblNewLabel_3 = new JLabel("New label");

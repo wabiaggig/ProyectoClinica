@@ -1,121 +1,156 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GUIPaciente extends JFrame {
 
-	private JPanel contentPane;
-	private JTextField txtCodPaciente;
-	private JTextField txtNombres;
-	private JTextField txtApellidos;
-	private JTextField txtDni;
-	private JTextField txtCelular;
-	private JTextField txtCorreo;
+    private JPanel contentPane;
+    
+    private JPanel panelSuperior;
+    private JPanel panelInferior;
 
-	/**
-	 * Create the frame.
-	 */
-	public GUIPaciente() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(GUIPaciente.class.getResource("/img/paciente (1).png")));
-		setTitle("Adicionar Paciente");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JLabel lblCodPaciente = new JLabel("codPaciente");
-		lblCodPaciente.setBounds(28, 30, 73, 16);
-		contentPane.add(lblCodPaciente);
-		
-		txtCodPaciente = new JTextField();
-		txtCodPaciente.setEditable(false);
-		txtCodPaciente.setBounds(111, 29, 96, 19);
-		contentPane.add(txtCodPaciente);
-		txtCodPaciente.setColumns(10);
-		
-		JLabel lblNewLabel_1 = new JLabel("Nombres");
-		lblNewLabel_1.setBounds(28, 56, 52, 13);
-		contentPane.add(lblNewLabel_1);
-		
-		txtNombres = new JTextField();
-		txtNombres.setBounds(90, 53, 238, 19);
-		contentPane.add(txtNombres);
-		txtNombres.setColumns(10);
-		
-		JLabel lblNewLabel_2 = new JLabel("Apellidos");
-		lblNewLabel_2.setBounds(28, 85, 52, 13);
-		contentPane.add(lblNewLabel_2);
-		
-		txtApellidos = new JTextField();
-		txtApellidos.setBounds(90, 82, 238, 19);
-		contentPane.add(txtApellidos);
-		txtApellidos.setColumns(10);
-		
-		JLabel lblNewLabel_3 = new JLabel("DNI");
-		lblNewLabel_3.setBounds(28, 117, 45, 13);
-		contentPane.add(lblNewLabel_3);
-		
-		txtDni = new JTextField();
-		txtDni.setEditable(false);
-		txtDni.setBounds(79, 111, 96, 19);
-		contentPane.add(txtDni);
-		txtDni.setColumns(10);
-		
-		JLabel lblNewLabel_4 = new JLabel("Edad");
-		lblNewLabel_4.setBounds(28, 141, 45, 13);
-		contentPane.add(lblNewLabel_4);
-		
-		JLabel lblNewLabel = new JLabel("Celular");
-		lblNewLabel.setBounds(28, 164, 45, 13);
-		contentPane.add(lblNewLabel);
-		
-		txtCelular = new JTextField();
-		txtCelular.setBounds(79, 161, 96, 19);
-		contentPane.add(txtCelular);
-		txtCelular.setColumns(10);
-		
-		JComboBox cbmEdad = new JComboBox();
-		cbmEdad.setBounds(79, 137, 45, 21);
-		contentPane.add(cbmEdad);
-		
-		JLabel lblNewLabel_5 = new JLabel("Correo");
-		lblNewLabel_5.setBounds(28, 193, 45, 13);
-		contentPane.add(lblNewLabel_5);
-		
-		JLabel lblNewLabel_6 = new JLabel("Estado");
-		lblNewLabel_6.setBounds(28, 222, 45, 13);
-		contentPane.add(lblNewLabel_6);
-		
-		txtCorreo = new JTextField();
-		txtCorreo.setBounds(79, 190, 156, 19);
-		contentPane.add(txtCorreo);
-		txtCorreo.setColumns(10);
-		
-		JComboBox cmbEstado = new JComboBox();
-		cmbEstado.setBounds(79, 218, 45, 21);
-		contentPane.add(cmbEstado);
-		
-		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.setIcon(new ImageIcon(GUIPaciente.class.getResource("/img/disco-flexible (1).png")));
-		btnGuardar.setBounds(164, 232, 106, 21);
-		contentPane.add(btnGuardar);
-		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.setIcon(new ImageIcon(GUIPaciente.class.getResource("/img/usuario (1).png")));
-		btnCancelar.setBounds(280, 232, 112, 21);
-		contentPane.add(btnCancelar);
-	}
+    private JTextField txtCodPaciente;
+    private JTextField txtNombres;
+    private JTextField txtApellidos;
+    private JTextField txtDni;
+    private JTextField txtCelular;
+    private JTextField txtCorreo;
+    private JComboBox<String> cbmEdad;
+    private JComboBox<String> cmbEstado;
+    
+    private JButton btnGuardar;
+    private JButton btnCancelar;
+
+    /**
+     * Create the frame.
+     */
+    public GUIPaciente() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(GUIPaciente.class.getResource("/img/paciente (1).png")));
+        setTitle("Adicionar Paciente");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setBounds(100, 100, 450, 450); 
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
+        setContentPane(contentPane);
+        contentPane.setLayout(null);
+        
+        panelSuperior = new JPanel();
+        panelSuperior.setBounds(0, 0, 436, 80); 
+        panelSuperior.setBackground(new Color(51, 153, 255));
+        panelSuperior.setLayout(null);
+        contentPane.add(panelSuperior);
+        
+        JLabel lblTitulo = new JLabel("AÑADIR PACIENTE");
+        lblTitulo.setForeground(Color.WHITE);
+        lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 24)); 
+        lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTitulo.setBounds(0, 20, 436, 40);
+        panelSuperior.add(lblTitulo);
+
+        panelInferior = new JPanel();
+        panelInferior.setBounds(0, 80, 436, 333); 
+        panelInferior.setBackground(Color.WHITE);
+        panelInferior.setLayout(null);
+        contentPane.add(panelInferior);
+
+        JLabel lblCod = new JLabel("Cód. Paciente:");
+        lblCod.setBounds(30, 20, 90, 16);
+        panelInferior.add(lblCod);
+        
+        txtCodPaciente = new JTextField();
+        txtCodPaciente.setEditable(false);
+        txtCodPaciente.setBounds(120, 18, 100, 22);
+        panelInferior.add(txtCodPaciente);
+        txtCodPaciente.setColumns(10);
+        
+        JLabel lblNom = new JLabel("Nombres:");
+        lblNom.setBounds(30, 55, 90, 13);
+        panelInferior.add(lblNom);
+        
+        txtNombres = new JTextField();
+        txtNombres.setBounds(120, 52, 260, 22);
+        panelInferior.add(txtNombres);
+        txtNombres.setColumns(10);
+        
+        JLabel lblApe = new JLabel("Apellidos:");
+        lblApe.setBounds(30, 90, 90, 13);
+        panelInferior.add(lblApe);
+        
+        txtApellidos = new JTextField();
+        txtApellidos.setBounds(120, 87, 260, 22);
+        panelInferior.add(txtApellidos);
+        txtApellidos.setColumns(10);
+        
+        JLabel lblDni = new JLabel("DNI:");
+        lblDni.setBounds(30, 125, 45, 13);
+        panelInferior.add(lblDni);
+        
+        txtDni = new JTextField();
+        txtDni.setEditable(true); 
+        txtDni.setBounds(120, 122, 100, 22);
+        panelInferior.add(txtDni);
+        txtDni.setColumns(10);
+        
+        JLabel lblEdad = new JLabel("Edad:");
+        lblEdad.setBounds(240, 125, 45, 13);
+        panelInferior.add(lblEdad);
+        
+        cbmEdad = new JComboBox<>();
+        for(int i=1; i<=100; i++) cbmEdad.addItem(String.valueOf(i));
+        cbmEdad.setBounds(280, 122, 50, 22);
+        panelInferior.add(cbmEdad);
+        
+        JLabel lblCel = new JLabel("Celular:");
+        lblCel.setBounds(30, 160, 60, 13);
+        panelInferior.add(lblCel);
+        
+        txtCelular = new JTextField();
+        txtCelular.setBounds(120, 157, 100, 22);
+        panelInferior.add(txtCelular);
+        txtCelular.setColumns(10);
+        
+        JLabel lblEst = new JLabel("Estado:");
+        lblEst.setBounds(240, 160, 45, 13);
+        panelInferior.add(lblEst);
+        
+        cmbEstado = new JComboBox<>();
+        cmbEstado.setModel(new DefaultComboBoxModel<>(new String[] {"Activo", "Inactivo"}));
+        cmbEstado.setBounds(290, 157, 90, 22);
+        panelInferior.add(cmbEstado);
+
+        JLabel lblMail = new JLabel("Correo:");
+        lblMail.setBounds(30, 195, 60, 13);
+        panelInferior.add(lblMail);
+        
+        txtCorreo = new JTextField();
+        txtCorreo.setBounds(120, 192, 260, 22);
+        panelInferior.add(txtCorreo);
+        txtCorreo.setColumns(10);
+        
+        btnGuardar = new JButton("Guardar");
+        btnGuardar.setBackground(Color.WHITE);
+        btnGuardar.setIcon(new ImageIcon(GUIPaciente.class.getResource("/img/disco-flexible (1).png")));
+        btnGuardar.setBounds(80, 250, 120, 30);
+        panelInferior.add(btnGuardar);
+        
+        btnCancelar = new JButton("Cancelar");
+        btnCancelar.setBackground(Color.WHITE);
+        btnCancelar.setIcon(new ImageIcon(GUIPaciente.class.getResource("/img/usuario (1).png")));
+        btnCancelar.setBounds(230, 250, 120, 30);
+        panelInferior.add(btnCancelar);
+        
+  
+        btnCancelar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose(); 
+            }
+        });
+    }
 }
